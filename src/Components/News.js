@@ -99,7 +99,7 @@ export class News extends Component {
         super();
         console.log("This is my constructor from news")
         this.state = {
-            article :this.article,
+            articles :this.articles,
             loading:false
         }
     }
@@ -111,32 +111,13 @@ export class News extends Component {
                 <i>News Monkey's - Top HeadLines</i>
             </h2>
             <div className="row">
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" 
-                    imageUrl = "https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/eyxrteivsw6fmwryrkjr"
-                    newsUrl = "TODO" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md3-">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
-                <div className="col my-2 md-3">
-                    <NewsItems title="NewsHeadline" description="description" />
-                </div>
+              {this.state.articles.map((element) => {
+                return <div className="col my-2 md-3" key = {element.url}>
+                        <NewsItems title={element.title.slice(0, 45)} description={element.description.slice(0, 88)}
+                        imageUrl = {element.urlToImage}
+                        newsUrl = {element.url} />
+                      </div>  
+              })}
             </div>
         </div>
       </div>
